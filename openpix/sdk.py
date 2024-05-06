@@ -1,8 +1,8 @@
 """
 Module: sdk
 """
-from woovi.http import HttpClient
-from woovi.resources import (
+from openpix.http import HttpClient
+from openpix.resources import (
     Account,
     CashbackFidelity,
     Charge,
