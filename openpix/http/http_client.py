@@ -18,7 +18,7 @@ class HttpClient:
         """
         url = self.base_url + path
         headers = kwargs.get('headers', {})
-        headers['Authorization'] = f'Bearer {self._app_id}'
+        headers['Authorization'] = self._app_id
         kwargs['headers'] = headers
 
         retry_strategy = Retry(
@@ -29,20 +29,14 @@ class HttpClient:
         http.mount("https://", HTTPAdapter(max_retries=retry_strategy))
         with http as session:
             api_result = session.request(method, url, **kwargs)
-            try:
-                response = {
-                    "status": api_result.status_code,
-                    "response": api_result.json()
-                }
-            except ValueError: 
-                response = {
-                    "status": api_result.status_code,
-                    "response": api_result.text
-                }
+               
+            response = {
+                "status": api_result.status_code,
+                "response": api_result.json()
+            }
 
-            if response["status"] == 400:
-                error_message = response["response"].get("error", "Unknown Error")
-                raise ValueError(error_message)
+            if response["status"] > 299 and maxretries == 0:
+                raise ValueError(response["response"])
 
         return response
 
