@@ -1,6 +1,7 @@
 """
     Module: pix-qr-code
 """
+from openpix.http import HttpClient
 
 class PixQrCode():
     """

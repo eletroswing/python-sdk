@@ -1,6 +1,7 @@
 """
     Module: customer
 """
+from openpix.http import HttpClient
 
 class Customer:
     """
@@ -8,7 +9,7 @@ class Customer:
 
     [Click here for more info](https://developers.woovi.com/api#tag/customer)  # pylint: disable=line-too-long
     """
-    def __init__(self, HttpClient):
+    def __init__(self, HttpClient: HttpClient):
         self._client = HttpClient
 
     def get(self):

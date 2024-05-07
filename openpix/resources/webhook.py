@@ -1,6 +1,7 @@
 """
     Module: webhook
 """
+from openpix.http import HttpClient
 
 class Webhook:
     """
@@ -8,7 +9,7 @@ class Webhook:
 
     [Click here for more info](https://developers.woovi.com/api#tag/webhook)  # pylint: disable=line-too-long
     """
-    def __init__(self, HttpClient):
+    def __init__(self, HttpClient: HttpClient):
         self._client = HttpClient
         
     def list(self):

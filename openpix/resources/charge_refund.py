@@ -1,6 +1,7 @@
 """
     Module: charge_refund
 """
+from openpix.http import HttpClient
 
 class ChargeRefund:
     """
@@ -8,7 +9,7 @@ class ChargeRefund:
 
     [Click here for more info](https://developers.woovi.com/api#tag/charge-refund)  # pylint: disable=line-too-long
     """
-    def __init__(self, HttpClient):
+    def __init__(self, HttpClient: HttpClient):
         self._client = HttpClient
 
     def list(self):

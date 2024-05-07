@@ -1,6 +1,7 @@
 """
     Module: sub-account
 """
+from openpix.http import HttpClient
 
 class SubAccount():
     """

@@ -1,6 +1,7 @@
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
+from urllib.parse import urlencode, urljoin
 
 class HttpClient:
     """
@@ -11,12 +12,16 @@ class HttpClient:
         self._app_id = app_id
         self.base_url = "https://api.woovi.com"
 
-    def request(self, method, path, maxretries=None, **kwargs):
+    def request(self, method, path, query, maxretries=None, **kwargs):
         """Makes a call to the API.
 
         All **kwargs are passed verbatim to ``requests.request``.
         """
-        url = self.base_url + path
+        if(query):
+            query_string = urlencode(query)
+            url = urljoin(self.base_url + path, '?' + query_string)
+        else:
+            url = self.base_url + path
         headers = kwargs.get('headers', {})
         headers['Authorization'] = self._app_id
         kwargs['headers'] = headers
@@ -27,6 +32,7 @@ class HttpClient:
         )
         http = requests.Session()
         http.mount("https://", HTTPAdapter(max_retries=retry_strategy))
+        
         with http as session:
             api_result = session.request(method, url, **kwargs)
                
@@ -35,48 +41,52 @@ class HttpClient:
                 "response": api_result.json()
             }
 
-            if response["status"] > 299 and maxretries == 0:
+            if response["status"] > 299:
                 raise ValueError(response["response"])
 
         return response
 
-    def get(self, path, params=None, timeout=None, maxretries=None):  
+    def get(self, path, query = None, params=None, timeout=None, maxretries=None):  
         """Makes a GET request to the API"""
         return self.request(
-            "GET",
+            method="GET",
             path=path,
+            query=query,
             params=params,
             timeout=timeout,
             maxretries=maxretries,
         )
 
-    def post(self, path, data=None, params=None, timeout=None, maxretries=None):  
+    def post(self, path, query = None, data=None, params=None, timeout=None, maxretries=None):  
         """Makes a POST request to the API"""
         return self.request(
-            "POST",
+            method="POST",
             path=path,
+            query=query,
             data=data,
             params=params,
             timeout=timeout,
             maxretries=maxretries,
         )
 
-    def put(self, path, data=None, params=None, timeout=None, maxretries=None):  
+    def put(self, path, query = None, data=None, params=None, timeout=None, maxretries=None):  
         """Makes a PUT request to the API"""
         return self.request(
-            "PUT",
+            method="PUT",
             path=path,
+            query=query,
             data=data,
             params=params,
             timeout=timeout,
             maxretries=maxretries,
         )
 
-    def delete(self, path, params=None, timeout=None, maxretries=None):  
+    def delete(self, path, query = None, params=None, timeout=None, maxretries=None):  
         """Makes a DELETE request to the API"""
         return self.request(
-            "DELETE",
+            method="DELETE",
             path=path,
+            query=query,
             params=params,
             timeout=timeout,
             maxretries=maxretries,

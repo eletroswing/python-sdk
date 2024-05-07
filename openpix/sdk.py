@@ -40,10 +40,11 @@ class SDK:
 
     def __init__(
         self,
-        app_id,
+        app_id: str,
     ):
         """Construct ur SDK Object to have access to all APIs modules.
         Args:
+            app_id (str): A string representing the application ID, which serves as the API key.
             [Click here for more info](https://developers.woovi.com/docs/apis/api-getting-started)
         """
         self._http_client = HttpClient(app_id=app_id)
@@ -53,95 +54,95 @@ class SDK:
         """
         Returns the attribute value of the function
         """
-        return Account(HttpClient)
+        return Account(self._http_client)
 
     @property
-    def cashback_fidelity(self):
+    def cashback(self):
         """
         Returns the attribute value of the function
         """
-        return CashbackFidelity(HttpClient)
+        return CashbackFidelity(self._http_client)
     
     @property
     def charge(self):
         """
         Returns the attribute value of the function
         """
-        return Charge(HttpClient)
+        return Charge(self._http_client)
     
     @property
-    def charge_refund(self):
+    def chargeRefund(self):
         """
         Returns the attribute value of the function
         """
-        return ChargeRefund(HttpClient)
+        return ChargeRefund(self._http_client)
 
     @property
     def customer(self):
         """
         Returns the attribute value of the function
         """
-        return Customer(HttpClient)
+        return Customer(self._http_client)
     
     @property
     def partner(self):
         """
         Returns the attribute value of the function
         """
-        return Partner(HttpClient)
+        return Partner(self._http_client)
     
     @property
-    def pix_qr_code(self):
+    def pixQrCode(self):
         """
         Returns the attribute value of the function
         """
-        return PixQrCode(HttpClient)
+        return PixQrCode(self._http_client)
     
     @property
     def payment(self):
         """
         Returns the attribute value of the function
         """
-        return Payment(HttpClient)
+        return Payment(self._http_client)
     
     @property
     def refund(self):
         """
         Returns the attribute value of the function
         """
-        return Refund(HttpClient)
+        return Refund(self._http_client)
 
     @property
-    def sub_account(self):
+    def subAccount(self):
         """
         Returns the attribute value of the function
         """
-        return SubAccount(HttpClient)
+        return SubAccount(self._http_client)
 
     @property
     def subscription(self):
         """
         Returns the attribute value of the function
         """
-        return Subscription(HttpClient)
+        return Subscription(self._http_client)
     
     @property
     def transactions(self):
         """
         Returns the attribute value of the function
         """
-        return Transactions(HttpClient)
+        return Transactions(self._http_client)
     
     @property
     def transfer(self):
         """
         Returns the attribute value of the function
         """
-        return Transfer(HttpClient)
+        return Transfer(self._http_client)
     
     @property
     def webhook(self):
         """
         Returns the attribute value of the function
         """
-        return Webhook(HttpClient)
+        return Webhook(self._http_client)
