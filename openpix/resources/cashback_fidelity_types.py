@@ -1,5 +1,3 @@
-from openpix.types import PageInfo
-
 class CashbackInfo:
     def __init__(self, value: int):
         self.value: value
