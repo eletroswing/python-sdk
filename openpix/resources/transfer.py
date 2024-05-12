@@ -2,6 +2,7 @@
     Module: transfer
 """
 from openpix.http import HttpClient
+import transfer_types
 
 class Transfer:
     """
@@ -12,5 +13,5 @@ class Transfer:
     def __init__(self, HttpClient: HttpClient):
         self._client = HttpClient
 
-    def create(self):
-        return
+    def create(self, value: str, fromPixKey: str, toPixKey: str) -> transfer_types.Transfer:
+        return self._client.post(path=f'/api/v1/transfer', data={value: value, fromPixKey: fromPixKey, toPixKey: toPixKey})
