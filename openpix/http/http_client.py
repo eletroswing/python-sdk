@@ -12,16 +12,20 @@ class HttpClient:
         self._app_id = app_id
         self.base_url = "https://api.woovi.com"
 
-    def request(self, method, path, query, maxretries=None, **kwargs):
+    def request(self, method, path, query, maxretries=None, data = None, **kwargs):
         """Makes a call to the API.
 
         All **kwargs are passed verbatim to ``requests.request``.
         """
         if(query):
-            query_string = urlencode(query)
+            query_string = urlencode({k: v for k, v in query.items() if v is not None})
             url = urljoin(self.base_url + path, '?' + query_string)
         else:
             url = self.base_url + path
+            
+        if(data):
+            data = {k: v for k, v in data.items() if v is not None}
+
         headers = kwargs.get('headers', {})
         headers['Authorization'] = self._app_id
         kwargs['headers'] = headers
@@ -34,7 +38,7 @@ class HttpClient:
         http.mount("https://", HTTPAdapter(max_retries=retry_strategy))
         
         with http as session:
-            api_result = session.request(method, url, **kwargs)
+            api_result = session.request(method, url, data=data,**kwargs)
                
             response = {
                 "status": api_result.status_code,
