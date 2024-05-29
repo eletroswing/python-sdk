@@ -72,6 +72,18 @@ class HttpClient:
             timeout=timeout,
             maxretries=maxretries,
         )
+    
+    def patch(self, path, query = None, data=None, params=None, timeout=None, maxretries=None):  
+        """Makes a PATCH request to the API"""
+        return self.request(
+            method="PATCH",
+            path=path,
+            query=query,
+            data=data,
+            params=params,
+            timeout=timeout,
+            maxretries=maxretries,
+        )
 
     def put(self, path, query = None, data=None, params=None, timeout=None, maxretries=None):  
         """Makes a PUT request to the API"""
