@@ -2,6 +2,7 @@
     Module: pix-qr-code
 """
 from openpix.http import HttpClient
+import pix_qr_code_types
 
 class PixQrCode():
     """
@@ -9,12 +10,41 @@ class PixQrCode():
 
     [Click here for more info](https://developers.woovi.com/api#tag/pixQrCode)  # pylint: disable=line-too-long
     """
+    def __init__(self, HttpClient: HttpClient):
+        self._client = HttpClient
 
-    def get(self):
-        return
+    """Get one Pix QrCode.
+    Args:
+        id (str): pixQrCode ID, correlation ID or emv identifier.
+    
+        [Click here for more info](https://developers.openpix.com.br/api#tag/pixQrCode/paths/~1api~1v1~1qrcode-static~1%7Bid%7D/get)
+    """
+    def get(self, id: str) -> pix_qr_code_types.PixQrCodeList:
+        return self._client.get(path=f'/api/v1/qrcode-static/{id}')
 
-    def list(self):
-        return
+    """Get a list of Pix QrCodes.
+    Args:
+        limit (int, optional): itens per page, defaults 10.
+        skip (int, optional): how many itens are gonna be skipped, default 0.
+    
+        [Click here for more info](https://developers.openpix.com.br/api#tag/pixQrCode/paths/~1api~1v1~1qrcode-static/get)
+    """
+    def list(self, limit: int = 10, skip: int = 0) -> pix_qr_code_types.PixQrCodeList:
+        return self._client.get(path=f'/api/v1/partner/qrcode-static', query={"limit": limit, "skip": skip})
 
-    def create(self):
-        return
+    """Create a new Pix QrCode Static
+    Args:
+        name (str): Name of this pix qrcode
+        correlationID (str): Your correlation ID to keep track of this qrcode
+        value (int): Value in cents of this qrcode
+        comment (str): Comment to be added in infoPagador
+    
+        [Click here for more info](https://developers.openpix.com.br/api#tag/pixQrCode/paths/~1api~1v1~1qrcode-static/post)
+    """
+    def create(self, name: str, correlationID: str, value: int, comment: str) -> pix_qr_code_types.PixQrCodeCreate:
+        return self._client.post(path=f'/api/v1/partner/qrcode-static', data={
+          "name": name,
+          "correlationID": correlationID,
+          "value": value,
+          "comment": comment
+        })
