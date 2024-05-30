@@ -2,7 +2,7 @@
     Module: payment
 """
 from openpix.http import HttpClient
-openpix.resources.
+import openpix.resources.payment_types as payment_types
 from openpix.types import PagePayload
 
 class Payment:

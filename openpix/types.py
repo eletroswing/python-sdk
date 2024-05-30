@@ -7,6 +7,6 @@ class PageInfo:
         self.hasNextPage = hasNextPage
 
 class PagePayload: 
-    def __init__(self, page: PagePayload = PagePayload()):
+    def __init__(self, limit: int = 10, skip:int = 0):
         self.limit = limit
         self.skip = skip

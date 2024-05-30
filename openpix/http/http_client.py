@@ -10,7 +10,7 @@ class HttpClient:
 
     def __init__(self, app_id):
         self._app_id = app_id
-        self.base_url = "https://api.woovi.com"
+        self.base_url = "https://api.openpix.com.br"
 
     def request(self, method, path, query, maxretries=None, data = None, **kwargs):
         """Makes a call to the API.
@@ -40,13 +40,9 @@ class HttpClient:
         with http as session:
             api_result = session.request(method, url, data=data,**kwargs)
                
-            response = {
-                "status": api_result.status_code,
-                "response": api_result.json()
-            }
-
-            if response["status"] > 299:
-                raise ValueError(response["response"])
+            response = api_result.json() 
+            if api_result.status_code > 299:
+                raise ValueError(response)
 
         return response
 

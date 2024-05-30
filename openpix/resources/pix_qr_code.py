@@ -2,7 +2,7 @@
     Module: pix-qr-code
 """
 from openpix.http import HttpClient
-openpix.resources.
+import openpix.resources.pix_qr_code_types as pix_qr_code_types
 from openpix.types import PagePayload
 
 class PixQrCode():

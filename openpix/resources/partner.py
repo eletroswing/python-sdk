@@ -2,7 +2,7 @@
     Module: partner
 """
 from openpix.http import HttpClient
-openpix.resources.
+import openpix.resources.partner_types as partner_types
 from openpix.types import PagePayload
 
 class Partner:

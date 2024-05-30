@@ -2,7 +2,7 @@
     Module: cashback_fidelity
 """
 from openpix.http import HttpClient
-openpix.resources.
+import openpix.resources.cashback_fidelity_types as cashback_fidelity_types
 
 class CashbackFidelity:
     """

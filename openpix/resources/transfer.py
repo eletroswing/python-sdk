@@ -2,7 +2,7 @@
     Module: transfer
 """
 from openpix.http import HttpClient
-openpix.resources.
+import openpix.resources.transfer_types as transfer_types
 
 class Transfer:
     """

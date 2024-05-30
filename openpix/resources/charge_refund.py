@@ -2,7 +2,7 @@
     Module: charge_refund
 """
 from openpix.http import HttpClient
-openpix.resources.
+import openpix.resources.charge_refund_types as charge_refund_types
 from openpix.types import PagePayload
 
 class ChargeRefund:

@@ -2,7 +2,7 @@
     Module: subscription
 """
 from openpix.http import HttpClient
-openpix.resources.
+import openpix.resources.subscription_types as subscription_types
 from typing import List
 
 class Subscription:

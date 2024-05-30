@@ -3,7 +3,7 @@
 """
 from openpix.http import HttpClient
 from openpix.types import PagePayload
-openpix.resources.
+import openpix.resources.customer_types as customer_types
 
 class Customer:
     """
@@ -20,7 +20,7 @@ class Customer:
 
         [Click here for more info](https://developers.openpix.com.br/api#tag/customer/paths/~1api~1v1~1customer~1%7Bid%7D/get)
     """
-    def get(self, id: str) -> charge_types.CustomerGet:
+    def get(self, id: str) -> customer_types.CustomerGet:
         return self._client.get(path=f'/api/v1/customer/{id}')
 
     """list customers
@@ -29,7 +29,7 @@ class Customer:
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/customer/paths/~1api~1v1~1customer~1%7Bid%7D/get)
     """
-    def list(self, page: PagePayload = PagePayload()) -> charge_types.ChargeList:
+    def list(self, page: PagePayload = PagePayload()) -> customer_types.CustomerList:
         return self._client.get(path=f'/api/v1/customer', query={"limit": page.limit, "skip": page.skip})
 
     """create a customer
@@ -51,7 +51,7 @@ class Customer:
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/customer/paths/~1api~1v1~1customer/post)
     """
-    def create(self, name: str, email: str, phone: str, taxID: str, address: charge_types.Address) -> charge_types.CustomerCreate:
+    def create(self, name: str, email: str, phone: str, taxID: str, address: customer_types.Address) -> customer_types.CustomerCreate:
         return self._client.post(path=f'/api/v1/customer', data={
             'name': name,
             'phone': phone,
@@ -88,7 +88,7 @@ class Customer:
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/customer/paths/~1api~1v1~1customer/post)
     """
-    def update(self, correlationID: str, name: str, email: str, phone: str, taxID: str, address: charge_types.Address) -> charge_types.CustomerUpdate:
+    def update(self, correlationID: str, name: str, email: str, phone: str, taxID: str, address: customer_types.Address) -> customer_types.CustomerUpdate:
         return self._client.patch(path=f'/api/v1/customer/{correlationID}', data={
             'name': name,
             'phone': phone,

@@ -2,7 +2,7 @@
     Module: transactions
 """
 from openpix.http import HttpClient
-import transactions_type
+import openpix.resources.transactions_type as transactions_type
 from openpix.types import PagePayload
 
 class Transactions:
