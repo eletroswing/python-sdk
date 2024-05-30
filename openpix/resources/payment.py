@@ -3,6 +3,7 @@
 """
 from openpix.http import HttpClient
 import payment_types
+from openpix.types import PagePayload
 
 class Payment:
     """
@@ -29,8 +30,8 @@ class Payment:
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/payment-(request-access)/paths/~1api~1v1~1payment~1%7Bid%7D/get)
     """
-    def list(self, limit: int = 10, skip: int = 0) -> payment_types.PaymentList:
-        return self._client.get(path=f'/api/v1/payment', query={"limit": limit, "skip": skip})
+    def list(self, page: PagePayload = PagePayload()) -> payment_types.PaymentList:
+        return self._client.get(path=f'/api/v1/payment', query={"limit": page.limit, "skip": page.skip})
 
     """approve a payment
     Args:

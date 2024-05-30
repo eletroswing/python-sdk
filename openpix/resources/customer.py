@@ -2,7 +2,7 @@
     Module: customer
 """
 from openpix.http import HttpClient
-
+from openpix.types import PagePayload
 import charge_types
 
 class Customer:
@@ -30,8 +30,8 @@ class Customer:
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/customer/paths/~1api~1v1~1customer~1%7Bid%7D/get)
     """
-    def list(self, limit: int = 10, skip: int = 0) -> charge_types.ChargeList:
-        return self._client.get(path=f'/api/v1/customer', query={"limit": limit, "skip": skip})
+    def list(self, page: PagePayload = PagePayload()) -> charge_types.ChargeList:
+        return self._client.get(path=f'/api/v1/customer', query={"limit": page.limit, "skip": page.skip})
 
     """create a customer
     Args:

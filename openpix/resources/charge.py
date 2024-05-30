@@ -3,7 +3,8 @@
 """
 from openpix.http import HttpClient
 import charge_types
-from typing import List, Union, Optional
+from typing import List, Optional
+from openpix.types import PagePayload
 
 class Charge:
     """
@@ -32,8 +33,8 @@ class Charge:
         skip (int): number of how many contents will be ignored
         [Click here for more info](https://developers.woovi.com/api#tag/charge/paths/~1api~1v1~1charge/get)
     """
-    def list(self, start: str = None, end: str = None, status: str = None, customer: str = None, limit: int = 10, skip: int = 0) -> charge_types.ChargeList:
-        return self._client.get(path=f'/api/v1/charge/', query={"limit": limit, "skip": skip, start: start, end: end, status: status, customer: customer})
+    def list(self, start: str = None, end: str = None, status: str = None, customer: str = None, page: PagePayload = PagePayload()) -> charge_types.ChargeList:
+        return self._client.get(path=f'/api/v1/charge/', query={"limit": page.limit, "skip": page.skip, start: start, end: end, status: status, customer: customer})
 
     """Delete one charge request
     Args:

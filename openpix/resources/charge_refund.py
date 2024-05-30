@@ -3,6 +3,7 @@
 """
 from openpix.http import HttpClient
 import charge_refund_types
+from openpix.types import PagePayload
 
 class ChargeRefund:
     """
@@ -20,8 +21,8 @@ class ChargeRefund:
         skip (int): number of how many contents will be ignored
         [Click here for more info](https://developers.woovi.com/api#tag/charge-refund/paths/~1api~1v1~1charge~1%7Bid%7D~1refund/get)
     """
-    def list(self, id: str, limit: int = 10, skip: int = 0) -> charge_refund_types.ChargeRefundList:
-        return self._client.get(path=f'/api/v1/charge/{id}/refund', query={"limit": limit, "skip": skip})
+    def list(self, id: str, page: PagePayload = PagePayload()) -> charge_refund_types.ChargeRefundList:
+        return self._client.get(path=f'/api/v1/charge/{id}/refund', query={"limit": page.limit, "skip": page.skip})
 
     """Create a new refund for a charge
     Args:

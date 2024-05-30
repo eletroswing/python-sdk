@@ -3,6 +3,7 @@
 """
 from openpix.http import HttpClient
 import pix_qr_code_types
+from openpix.types import PagePayload
 
 class PixQrCode():
     """
@@ -29,8 +30,8 @@ class PixQrCode():
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/pixQrCode/paths/~1api~1v1~1qrcode-static/get)
     """
-    def list(self, limit: int = 10, skip: int = 0) -> pix_qr_code_types.PixQrCodeList:
-        return self._client.get(path=f'/api/v1/partner/qrcode-static', query={"limit": limit, "skip": skip})
+    def list(self, page: PagePayload = PagePayload()) -> pix_qr_code_types.PixQrCodeList:
+        return self._client.get(path=f'/api/v1/partner/qrcode-static', query={"limit": page.limit, "skip": page.skip})
 
     """Create a new Pix QrCode Static
     Args:

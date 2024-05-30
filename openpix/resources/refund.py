@@ -3,6 +3,7 @@
 """
 from openpix.http import HttpClient
 import refund_types
+from openpix.types import PagePayload
 
 class Refund:
     """
@@ -29,8 +30,8 @@ class Refund:
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/refund/paths/~1api~1v1~1refund/get)
     """
-    def list(self, limit: int = 10, skip: int = 0) -> refund_types.RefundList:
-        return self._client.get(path=f'/api/v1/refund', query={"limit": limit, "skip": skip})
+    def list(self, page: PagePayload = PagePayload()) -> refund_types.RefundList:
+        return self._client.get(path=f'/api/v1/refund', query={"limit": page.limit, "skip": page.skip})
 
     """create a refund
     Args:

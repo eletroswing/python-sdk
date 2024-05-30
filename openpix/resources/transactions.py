@@ -3,6 +3,7 @@
 """
 from openpix.http import HttpClient
 import transactions_type
+from openpix.types import PagePayload
 
 class Transactions:
     """
@@ -35,5 +36,5 @@ class Transactions:
         
         [Click here for more info](https://developers.openpix.com.br/api#tag/transactions/paths/~1api~1v1~1transaction/get)
     """ 
-    def list(self, start: str, end: str, charge: str, pixQrCode: str, withdrawal: str, limit: int = 10, skip: int = 0) -> transactions_type.TransactionsList:
-        return self._client.get(path=f'/api/v1/transaction', query={"start": start, "end": end, "charge": charge, "pixQrCode": pixQrCode, "withdrawal": withdrawal, "limit": limit, "skip": skip})
+    def list(self, start: str, end: str, charge: str, pixQrCode: str, withdrawal: str, page: PagePayload = PagePayload()) -> transactions_type.TransactionsList:
+        return self._client.get(path=f'/api/v1/transaction', query={"start": start, "end": end, "charge": charge, "pixQrCode": pixQrCode, "withdrawal": withdrawal, "limit": page.limit, "skip": page.skip})

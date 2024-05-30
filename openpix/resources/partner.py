@@ -3,6 +3,7 @@
 """
 from openpix.http import HttpClient
 import partner_types
+from openpix.types import PagePayload
 
 class Partner:
     """
@@ -29,8 +30,8 @@ class Partner:
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/partner-(request-access)/paths/~1api~1v1~1partner~1company/get)
     """
-    def list(self, limit: int = 10, skip: int = 0) -> partner_types.PartnerList:
-        return self._client.get(path=f'/api/v1/partner/company', query={"limit": limit, "skip": skip})
+    def list(self, page: PagePayload = PagePayload()) -> partner_types.PartnerList:
+        return self._client.get(path=f'/api/v1/partner/company', query={"limit": page.limit, "skip": page.skip})
 
     """Create a pre registration with a partner reference (your company)
     Args:
