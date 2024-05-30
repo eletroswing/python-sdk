@@ -2,7 +2,7 @@
     Module: account
 """
 from openpix.http import HttpClient
-import account_types
+openpix.resources.
 from openpix.types import PagePayload
 
 class Account:

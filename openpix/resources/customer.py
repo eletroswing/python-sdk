@@ -3,7 +3,7 @@
 """
 from openpix.http import HttpClient
 from openpix.types import PagePayload
-import charge_types
+openpix.resources.
 
 class Customer:
     """

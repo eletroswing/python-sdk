@@ -2,7 +2,7 @@
     Module: sub-account
 """
 from openpix.http import HttpClient
-import sub_account_types
+openpix.resources.
 from openpix.types import PagePayload
 
 class SubAccount():

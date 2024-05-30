@@ -2,7 +2,7 @@
     Module: refund
 """
 from openpix.http import HttpClient
-import refund_types
+openpix.resources.
 from openpix.types import PagePayload
 
 class Refund:

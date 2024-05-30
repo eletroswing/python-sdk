@@ -2,7 +2,7 @@
     Module: charge
 """
 from openpix.http import HttpClient
-import charge_types
+openpix.resources.
 from typing import List, Optional
 from openpix.types import PagePayload
 

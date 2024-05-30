@@ -2,7 +2,7 @@
     Module: webhook
 """
 from openpix.http import HttpClient
-import webhook_types
+openpix.resources.
 from openpix.types import PagePayload
 
 class Webhook:
