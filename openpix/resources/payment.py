@@ -61,5 +61,5 @@ class Payment:
 
         [Click here for more info](https://developers.openpix.com.br/api#tag/payment-(request-access)/paths/~1api~1v1~1payment/post)
     """
-    def create(self, **kwargs) -> payment_types.PaymentCreate: 
-        return self._client.post(path=f'/api/v1/payment', data=kwargs)
+    def create(self, payload) -> payment_types.PaymentCreate: 
+        return self._client.post(path=f'/api/v1/payment', data=payload)
