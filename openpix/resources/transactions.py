@@ -31,8 +31,7 @@ class Transactions:
         pixQrCode (str): You can use the QrCode static ID or correlation ID or identifier field of QrCode static to get a list of QrCode related of this transaction
         withdrawal (str): You can use the ID or EndToEndId of a withdrawal transaction to get all transactions related to the withdrawal
 
-        limit (int, optional): itens per page, defaults 10.
-        skip (int, optional): how many itens are gonna be skipped, default 0.
+        page (PageInfo): A class for page info object containing limit and skip
         
         [Click here for more info](https://developers.openpix.com.br/api#tag/transactions/paths/~1api~1v1~1transaction/get)
     """ 

@@ -25,8 +25,7 @@ class Refund:
 
     """list refunds
     Args:
-        limit (int, optional): itens per page, defaults 10.
-        skip (int, optional): how many itens are gonna be skipped, default 0.
+        page (PageInfo): A class for page info object containing limit and skip
     
         [Click here for more info](https://developers.openpix.com.br/api#tag/refund/paths/~1api~1v1~1refund/get)
     """
