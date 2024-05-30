@@ -13,13 +13,42 @@ class Partner:
     def __init__(self, HttpClient: HttpClient):
         self._client = HttpClient
 
+    """Get an specific preregistration via taxID param.
+    Args:
+        taxID (str): The raw tax ID from the preregistration that you want to get
+    
+        [Click here for more info](https://developers.openpix.com.br/api#tag/partner-(request-access)/paths/~1api~1v1~1partner~1company~1%7BtaxID%7D/get)
+    """
     def get(self, taxID: str) -> partner_types.PartnerGet:
         return self._client.get(path=f'/api/v1/partner/company/{taxID}')
 
-
+    """Get every preregistration that is managed by you.
+    Args:
+        limit (int, optional): itens per page, defaults 10.
+        skip (int, optional): how many itens are gonna be skipped, default 0.
+    
+        [Click here for more info](https://developers.openpix.com.br/api#tag/partner-(request-access)/paths/~1api~1v1~1partner~1company/get)
+    """
     def list(self, limit: int = 10, skip: int = 0) -> partner_types.PartnerList:
         return self._client.get(path=f'/api/v1/partner/company', query={"limit": limit, "skip": skip})
 
+    """Create a pre registration with a partner reference (your company)
+    Args:
+        preRegistration (preRegistration):
+          - name: str
+          - website: str
+          - taxID: 
+            - taxID: str
+            - type: str
+
+        user (user):
+          - firstName: str
+          - lastName: str
+          - email: str
+          - phone: str
+    
+        [Click here for more info](https://developers.openpix.com.br/api#tag/partner-(request-access)/paths/~1api~1v1~1partner~1company/post)
+    """
     def createPreRegistration(self, preRegistration: partner_types.PreRegistrationCreate, user: partner_types.PreRegistrationUserObject):
         return self._client.post(path=f'/api/v1/partner/company', data={
           "preRegistration": {
@@ -38,6 +67,18 @@ class Partner:
           }
         })
 
+    """Create a new application to some of your preregistration's company.
+    Args:
+        application (application):
+          - name: str
+          - type: str
+
+        taxID (taxID):
+          - taxID: str
+          - type: str
+    
+        [Click here for more info](https://developers.openpix.com.br/api#tag/partner-(request-access)/paths/~1api~1v1~1partner~1application/post)
+    """
     def createApplication(self, application: partner_types.Application, taxID: partner_types.TaxId):
         return self._client.post(path=f'/api/v1/partner/application', data={
           "application": {
